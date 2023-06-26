@@ -21,15 +21,21 @@ def get_athletes_href_links():
 def get_match_data():
     response = requests.get("https://www.flograppling.com/people/5950131-adam-wardzinski")
     soup = BeautifulSoup(response.text, "html.parser")
-    # all_a_tags = soup.find('flo-table')
 
-    dates = soup.find_all('h5')
-    dates_as_strings = [str(year.string) for year in dates]
+    table = soup.find('tbody')
+    row = table.find('tr')
+    row_elements = row.findAll('td')
+    submission_result = row_elements[3]
 
-    pattern = r"\b\d{4}\b"
-    valid_years = [year for year in dates_as_strings if re.match(pattern, year)]
+    print(submission_result.text)
 
-    print(valid_years)
+    # dates = soup.find_all('h5')
+    # dates_as_strings = [str(year.string) for year in dates]
+
+    # pattern = r"\b\d{4}\b"
+    # valid_years = [year for year in dates_as_strings if re.match(pattern, year)]
+
+    # print(valid_years)
 
 
 get_match_data()
