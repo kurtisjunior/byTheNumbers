@@ -18,11 +18,11 @@ def get_athletes():
     return athlete_href_links
 
 
-def get_fight_data():
-    response = requests.get("https://www.flograppling.com/people/5950131-adam-wardzinski")
+def get_fight_data(athlete_link):
+    response = requests.get("https://www.flograppling.com/people/" + athlete_link)
     soup = BeautifulSoup(response.text, "html.parser")
 
-    dates = soup.find_all('h5')
+    dates = s¡oup.find_all('h5')
     dates_as_strings = [str(year.string) for year in dates]
     pattern = r"\b\d{4}\b"
     valid_years = [year for year in dates_as_strings if re.match(pattern, year)]
@@ -41,7 +41,19 @@ def get_fight_data():
                         + row_elements[6].text)
         year_index += 1
 
-    print(sub_results)
+    return sub_results
 
 
-get_fight_data()
+def extract():
+    athletes = get_athletes()
+    for athlete in athletes:
+        athlete_name = get_name(athlete)
+
+
+def get_name(athlete_name):
+    split_name = athlete_name.split('-')
+    del split_name[0]
+    return ' '.join(split_name)
+
+
+get_name()
