@@ -1,3 +1,7 @@
+import pandas as pd
+
+import athlete_data
+import test_data
 from extract import get_athletes_links, get_name, get_fight_data
 
 
@@ -15,4 +19,25 @@ def extract():
 
 
 def transform():
-    print("hello, world")
+    dfs = []
+    columns = ['name', 'finish', 'year', 'opponent', 'weight', 'competition']
+
+    for name, values in test_data.data.items():
+        rows = []
+        for item in values:
+            rows.append({
+                'name': name,
+                'finish': item['finish'],
+                'year': item['year'],
+                'opponent': item['opponent'],
+                'weight': item['weight'],
+                'competition': item['competition']
+            })
+        df = pd.DataFrame(rows, columns=columns)
+        dfs.append(df)
+
+    result_df = pd.concat(dfs, ignore_index=True)
+    print(result_df.head(5))
+
+
+transform()
