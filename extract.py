@@ -50,21 +50,3 @@ def get_name(athlete_name):
     split_name = athlete_name.split('-')
     del split_name[0]
     return ' '.join(split_name)
-
-
-def extract():
-    # athletes_links = get_athletes_links()
-    athletes_links = ["5950131-adam-wardzinski", "5951184-andre-galvao"]
-
-    athlete_data = {}
-
-    for athlete_link in athletes_links:
-        athlete_name = get_name(athlete_link)
-        athlete_fight_data = get_fight_data(athlete_link)
-        athlete_data[athlete_name] = athlete_fight_data
-
-    print(athlete_data)
-    # return athlete_data
-
-
-extract()
