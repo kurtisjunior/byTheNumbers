@@ -35,9 +35,10 @@ def get_fight_data():
         for row in rows:
             row_elements = row.findAll('td')
             if len(row_elements) > 6:
-                sub_results.append(
-                    row_elements[3].text + "-" + valid_years[year_index] + "-" + row_elements[5].text + "-"
-                    + row_elements[6].text)
+                if row_elements[1].text == 'W':
+                    sub_results.append(
+                        row_elements[3].text + "-" + valid_years[year_index] + "-" + row_elements[5].text + "-"
+                        + row_elements[6].text)
         year_index += 1
 
     print(sub_results)
