@@ -18,7 +18,7 @@ def get_athletes():
     return athlete_href_links
 
 
-def get_match_data():
+def get_fight_data():
     response = requests.get("https://www.flograppling.com/people/5950131-adam-wardzinski")
     soup = BeautifulSoup(response.text, "html.parser")
 
@@ -34,11 +34,13 @@ def get_match_data():
         rows = table.findAll('tr')
         for row in rows:
             row_elements = row.findAll('td')
-            if len(row_elements) > 3:
-                sub_results.append(row_elements[3].text + "-" + valid_years[year_index])
+            if len(row_elements) > 6:
+                sub_results.append(
+                    row_elements[3].text + "-" + valid_years[year_index] + "-" + row_elements[5].text + "-"
+                    + row_elements[6].text)
         year_index += 1
 
     print(sub_results)
 
 
-get_match_data()
+get_fight_data()
