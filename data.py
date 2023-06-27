@@ -16,10 +16,7 @@ def get_athletes_links():
             athlete_link = href.replace('/people/', "")
             athlete_href_links.append(athlete_link)
 
-    print(athlete_href_links)
-
-
-# return athlete_href_links
+    return athlete_href_links
 
 
 def get_fight_data(athlete_link):
@@ -40,9 +37,10 @@ def get_fight_data(athlete_link):
             row_elements = row.findAll('td')
             if len(row_elements) > 6:
                 if row_elements[1].text == 'W':
-                    sub_results.append(
-                        row_elements[3].text + "-" + valid_years[year_index] + "-" + row_elements[5].text + "-"
-                        + row_elements[6].text)
+                    athlete_sub_result = {'finish': row_elements[3].text, 'year': valid_years[year_index],
+                                          'opponent': row_elements[4].text, 'weight': row_elements[5].text,
+                                          'competition': row_elements[6].text}
+                    sub_results.append(athlete_sub_result)
         year_index += 1
 
     return sub_results
@@ -56,7 +54,7 @@ def get_name(athlete_name):
 
 def extract():
     # athletes_links = get_athletes_links()
-    athletes_links = ["/5950131-adam-wardzinski", "5951184-andre-galvao"]
+    athletes_links = ["5950131-adam-wardzinski", "5951184-andre-galvao"]
 
     athlete_data = {}
 
@@ -69,4 +67,4 @@ def extract():
     # return athlete_data
 
 
-get_athletes_links()
+extract()
