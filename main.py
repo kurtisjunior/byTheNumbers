@@ -1,5 +1,5 @@
 from services.get_data import get_athletes_links, get_name, get_fight_data
-from services.repository import save_athlete_data
+from services.repository import save_submission_data
 from services.clean_data import clean_data
 
 
@@ -23,4 +23,4 @@ def transform(athlete_data):
 
 
 def load():
-    save_athlete_data()
+    save_submission_data()
