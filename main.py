@@ -22,16 +22,16 @@ def transform():
     dfs = []
     columns = ['name', 'finish', 'year', 'opponent', 'weight', 'competition']
 
-    for name, values in test_data.data.items():
+    for key, sub_values in test_data.data.items():
         rows = []
-        for item in values:
+        for sub in sub_values:
             rows.append({
-                'name': name,
-                'finish': item['finish'],
-                'year': item['year'],
-                'opponent': item['opponent'],
-                'weight': item['weight'],
-                'competition': item['competition']
+                'name': key,
+                'finish': sub['finish'],
+                'year': sub['year'],
+                'opponent': sub['opponent'],
+                'weight': sub['weight'],
+                'competition': sub['competition']
             })
         df = pd.DataFrame(rows, columns=columns)
         dfs.append(df)
