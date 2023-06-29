@@ -1,6 +1,6 @@
-from services.get_data import get_athletes_links, get_name, get_fight_data
-from services.repository import save_submission_data
 from services.clean_data import clean_data
+from services.get_data import get_athletes_links, get_name, get_fight_data
+from services.repository import create_submission_item
 
 
 def extract():
@@ -23,4 +23,7 @@ def transform(athlete_data):
 
 
 def load():
-    save_submission_data()
+    create_submission_item()
+
+
+transform()

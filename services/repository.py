@@ -13,10 +13,13 @@ def create_connection(path):
     return connection
 
 
-def execute_query(connection, query):
+def execute_query(connection, query, params=None):
     cursor = connection.cursor()
     try:
-        cursor.execute(query)
+        if params:
+            cursor.execute(query, params)
+        else:
+            cursor.execute(query)
         connection.commit()
         print("Query executed successfully")
     except Error as e:
@@ -43,23 +46,47 @@ def create_submission_table():
     execute_query(connection, create_table)
 
 
-def create_submission_item(submission):
+def create_submission_item():
+    repo_test_data = [
+        {
+
+            'name': 'aaron tex johnson',
+            'finish': 'DQ',
+            'year': '2021',
+            'opponent': 'O. Sanchez',
+            'weight': 'Heavyweight',
+            'competition': '2021 FloGrappling WNO Championship'
+        },
+        {
+            'name': 'kurtis',
+            'finish': 'DQ',
+            'year': '2021',
+            'opponent': 'O. Sanchez',
+            'weight': 'Heavyweight',
+            'competition': '2021 FloGrappling WNO Championship'
+        }
+    ]
+
     path = 'db/submission_db.sqlite3'
 
     connection = create_connection(path)
 
-    # do something to the data to make it ready for inserting
-    # iterate over the data and add 1 at a time?
-    # add everything at once somehow?
-
     create_submission = """
-    INSERT INTO
-      submission_db (name,finish,year,opponent,weight,competition)
-    VALUES
-      ('name', 'finish', 'year', 'opponent', 'weight', 'competition'),
+    INSERT INTO submission_db (name, finish, year, opponent, weight, competition)
+    VALUES (?, ?, ?, ?, ?, ?)
     """
 
-    execute_query(connection, create_submission)
+    for submission in repo_test_data:
+        execute_query(connection, create_submission, (
+            submission['name'],
+            submission['finish'],
+            submission['year'],
+            submission['opponent'],
+            submission['weight'],
+            submission['competition']
+        ))
+
+    connection.close()
 
 
 create_submission_item()

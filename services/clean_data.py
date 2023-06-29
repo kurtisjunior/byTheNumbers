@@ -11,7 +11,7 @@ def clean_data(athlete_data):
             rows.append({
                 'name': key,
                 'finish': sub['finish'],
-                'year': sub['year'],
+                'year': int(sub['year']),
                 'opponent': sub['opponent'],
                 'weight': sub['weight'],
                 'competition': sub['competition']
@@ -20,4 +20,4 @@ def clean_data(athlete_data):
         dfs.append(df)
 
     result_df = pd.concat(dfs, ignore_index=True)
-    result_df
+    return result_df
