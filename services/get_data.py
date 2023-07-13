@@ -19,8 +19,8 @@ def get_athletes_links():
     return athlete_href_links
 
 
-def get_fight_data(athlete_link):
-    response = requests.get("https://www.flograppling.com/people/" + athlete_link)
+def get_fight_data(athlete_code):
+    response = requests.get("https://www.flograppling.com/people/" + athlete_code)
     soup = BeautifulSoup(response.text, "html.parser")
 
     dates = soup.find_all('h5')

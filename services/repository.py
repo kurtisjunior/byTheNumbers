@@ -27,7 +27,7 @@ def execute_query(connection, query, params=None):
 
 
 def create_submission_table():
-    path = 'db/submission_db.sqlite3'
+    path = '../db/submission_db.sqlite3'
 
     connection = create_connection(path)
 
@@ -52,7 +52,7 @@ def create_submission_item():
 
             'name': 'aaron tex johnson',
             'finish': 'DQ',
-            'year': '2021',
+            'year': 2021,
             'opponent': 'O. Sanchez',
             'weight': 'Heavyweight',
             'competition': '2021 FloGrappling WNO Championship'
@@ -60,7 +60,7 @@ def create_submission_item():
         {
             'name': 'kurtis',
             'finish': 'DQ',
-            'year': '2021',
+            'year': 2021,
             'opponent': 'O. Sanchez',
             'weight': 'Heavyweight',
             'competition': '2021 FloGrappling WNO Championship'
@@ -89,4 +89,34 @@ def create_submission_item():
     connection.close()
 
 
-create_submission_item()
+def create_single_item():
+    single = {
+        'name': 'aaron tex johnson',
+        'finish': 'DQ',
+        'year': 2021,
+        'opponent': 'O. Sanchez',
+        'weight': 'Heavyweight',
+        'competition': '2021 FloGrappling WNO Championship'
+    }
+    path = '../db/submission_db.sqlite3'
+    connection = create_connection(path)
+
+    create_submission = """
+    INSERT INTO submissions (name, finish, year, opponent, weight, competition)
+    VALUES (?, ?, ?, ?, ?, ?)
+    """
+
+    execute_query(connection, create_submission, (
+        single['name'],
+        single['finish'],
+        single['year'],
+        single['opponent'],
+        single['weight'],
+        single['competition']
+    ))
+
+    connection.close()
+
+
+create_submission_table()
+create_single_item()
