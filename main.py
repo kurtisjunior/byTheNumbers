@@ -1,12 +1,12 @@
 from services.clean_data import clean_data
-from services.get_data import get_athletes_links, get_name, get_fight_data
+from services.get_data import get_athletes, get_name, get_fight_data
 from services.repository import create_submissions, create_submission_table
 
 
 def extract():
-    athletes_codes = get_athletes_links()
+    athlete_codes = get_athletes()
     athlete_subs = {}
-    for athlete_code in athletes_codes:
+    for athlete_code in athlete_codes:
         athlete_name = get_name(athlete_code)
         athlete_fight_data = get_fight_data(athlete_code)
         athlete_subs[athlete_name] = athlete_fight_data
@@ -32,9 +32,3 @@ def main():
 
 
 main()
-
-# def transform():
-#     test_data = wardinski.data
-#     transformed_data = clean_data(test_data)
-#
-#     return transformed_data

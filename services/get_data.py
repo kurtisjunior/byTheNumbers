@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import re
 
 
-def get_athletes_links():
+def get_athletes():
     response = requests.get("https://www.flograppling.com/people")
     soup = BeautifulSoup(response.text, "html.parser")
     all_a_tags = soup.find_all('a')
