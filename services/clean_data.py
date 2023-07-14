@@ -20,4 +20,5 @@ def clean_data(athlete_data):
         dfs.append(df)
 
     result_df = pd.concat(dfs, ignore_index=True)
-    return result_df
+
+    return result_df.to_dict('records')

@@ -27,7 +27,7 @@ def execute_query(connection, query, params=None):
 
 
 def create_submission_table():
-    path = '../db/submission_db.sqlite3'
+    path = 'db/submission_db.sqlite3'
 
     connection = create_connection(path)
 
@@ -46,28 +46,8 @@ def create_submission_table():
     execute_query(connection, create_table)
 
 
-def create_submission_item():
-    repo_test_data = [
-        {
-
-            'name': 'aaron tex johnson',
-            'finish': 'DQ',
-            'year': 2021,
-            'opponent': 'O. Sanchez',
-            'weight': 'Heavyweight',
-            'competition': '2021 FloGrappling WNO Championship'
-        },
-        {
-            'name': 'kurtis',
-            'finish': 'DQ',
-            'year': 2021,
-            'opponent': 'O. Sanchez',
-            'weight': 'Heavyweight',
-            'competition': '2021 FloGrappling WNO Championship'
-        }
-    ]
-
-    path = '../db/submission_db.sqlite3'
+def create_submissions(cleaned_submissions):
+    path = 'db/submission_db.sqlite3'
 
     connection = create_connection(path)
 
@@ -76,7 +56,7 @@ def create_submission_item():
     VALUES (?, ?, ?, ?, ?, ?)
     """
 
-    for submission in repo_test_data:
+    for submission in cleaned_submissions:
         execute_query(connection, create_submission, (
             submission['name'],
             submission['finish'],
@@ -87,6 +67,3 @@ def create_submission_item():
         ))
 
     connection.close()
-
-
-create_submission_item()
