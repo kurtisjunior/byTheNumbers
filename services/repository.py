@@ -70,7 +70,7 @@ def create_submissions(cleaned_submissions):
 
 
 def get_athletes():
-    path = '../db/submission_db.sqlite3'
+    path = 'db/submission_db.sqlite3'
 
     connection = create_connection(path)
 
@@ -82,10 +82,9 @@ def get_athletes():
 
     results = cursor.fetchall()
 
-    for row in results:
-        print(row)
-
     connection.close()
+
+    return results
 
 
 get_athletes()
