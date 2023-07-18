@@ -21,6 +21,7 @@ def athlete_controller():
         for athlete in athletes
     ]
 
+    print('fired')
     return athlete_dicts
 
 
