@@ -8,7 +8,7 @@ def create_connection(path):
         connection = sqlite3.connect(path)
         print("Connection to SQLite DB successful")
     except Error as e:
-        print(f"The error '{e}' occurred")
+        print(f"The error '{e}' occurred when trying to connect to the db")
 
     return connection
 
@@ -23,7 +23,7 @@ def execute_query(connection, query, params=None):
         connection.commit()
         print("Query executed successfully")
     except Error as e:
-        print(f"The error '{e}' occurred")
+        print(f"The error '{e}' occurred when trying to execute the query")
 
 
 def create_submission_table():
@@ -78,13 +78,13 @@ def get_athletes():
 
     get_athlete_data_query = "SELECT * FROM submissions;"
 
-    cursor.execute(get_athlete_data_query)
-
-    results = cursor.fetchall()
-
-    connection.close()
-
-    return results
+    try:
+        cursor.execute(get_athlete_data_query)
+        results = cursor.fetchall()
+        connection.close()
+        return results
+    except Error as e:
+        print(f"The error '{e}' occurred when querying for all of the athlete data")
 
 
 get_athletes()

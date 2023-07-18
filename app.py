@@ -1,5 +1,4 @@
 from flask import Flask
-import sqlite3
 
 from services.repository import get_athletes
 
