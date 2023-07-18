@@ -5,7 +5,7 @@ from services.repository import get_athletes
 app = Flask(__name__)
 
 
-@app.route('/athletes')
+@app.route('/')
 def athlete_controller():
     athletes = get_athletes()
 
