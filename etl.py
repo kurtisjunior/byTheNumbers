@@ -1,10 +1,10 @@
 from services.clean_data import clean_data
-from services.get_data import get_athletes, get_name, get_fight_data
+from services.get_data import get_athletes_info, get_name, get_fight_data
 from services.repository import create_submissions, create_submission_table
 
 
 def extract():
-    athlete_codes = get_athletes()
+    athlete_codes = get_athletes_info()
     athlete_subs = {}
     for athlete_code in athlete_codes:
         athlete_name = get_name(athlete_code)
@@ -32,3 +32,5 @@ def main():
 
 
 main()
+
+# run this script when it's deployed

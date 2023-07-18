@@ -67,3 +67,25 @@ def create_submissions(cleaned_submissions):
         ))
 
     connection.close()
+
+
+def get_athletes():
+    path = '../db/submission_db.sqlite3'
+
+    connection = create_connection(path)
+
+    cursor = connection.cursor()
+
+    get_athlete_data_query = "SELECT * FROM submissions;"
+
+    cursor.execute(get_athlete_data_query)
+
+    results = cursor.fetchall()
+
+    for row in results:
+        print(row)
+
+    connection.close()
+
+
+get_athletes()
